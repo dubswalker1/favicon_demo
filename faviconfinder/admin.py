@@ -10,8 +10,6 @@ class FaviconAdmin(admin.ModelAdmin):
 admin.site.register(Favicon, FaviconAdmin)
 
 # Register your models here.
-# avoid concurrency issues
-@ transaction.atomic
 def seed_db(ModelAdmin, request, queryset):
 	#pdb.set_trace()
 	# seed the database via zip download
@@ -33,19 +31,13 @@ def seed_db(ModelAdmin, request, queryset):
 			byte_str = bytes_obj.read()
 			text_obj = byte_str.decode('UTF-8')
 			string_obj = io.StringIO(text_obj)
-			entries = []
-			# just for debugging
-			start_at = -1
-			stop_at = 1000000
-			# end just debugging
+			
 			for i in range(200000):
 				url = string_obj.readline().split(",")[1].strip()
-				if i > start_at and i < stop_at:
-					entries.append(url)
-					obj = Favicon()
-					obj.url = "http://www."+url
-					#this call should take care of saving
-					obj.fav_url = getFaviconUrl(obj.url)
+				obj = Favicon()
+				obj.url = "http://www."+url
+				#this call should take care of saving
+				obj.fav_url = getFaviconUrl(obj.url)
 				
 			print("num_entries:"+str(len(entries)))
 			
