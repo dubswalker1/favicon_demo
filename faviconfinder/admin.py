@@ -34,8 +34,10 @@ def seed_db(ModelAdmin, request, queryset):
 			text_obj = byte_str.decode('UTF-8')
 			string_obj = io.StringIO(text_obj)
 			entries = []
-			start_at = 160000
-			stop_at = 199900
+			# just for debugging
+			start_at = -1
+			stop_at = 1000000
+			# end just debugging
 			for i in range(200000):
 				url = string_obj.readline().split(",")[1].strip()
 				if i > start_at and i < stop_at:
