@@ -27,6 +27,7 @@ def index(request):
 				form_valid = form.is_valid()
 			except ValidationError as e:
 				pass
+				
 			if form_valid:
 				data = form.cleaned_data
 				url_param = data['url']

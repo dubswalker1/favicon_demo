@@ -4,8 +4,8 @@ from .models import Favicon
 import re
 from bs4 import BeautifulSoup
 from django.db import transaction
-import urllib3
 import pdb
+#import Exception
 
 def validateFaviconUrl(fav_url):
 	# if no valid fav_url, set a placeholder value to show we tried
@@ -36,7 +36,7 @@ def makeRequest(url):
 	except requests.exceptions.RequestException as e:
 		print("Exception:"+str(e))
 		return(None)
-	except urllib3.exceptions.Exception as url_e:
+	except Exception as url_e:
 		print("Exception:"+str(url_e))
 		return(None)
 	return response

@@ -33,3 +33,4 @@ class Favicon(models.Model):
 		
 	def invalid_url():
 		return "INVALID"
+		
