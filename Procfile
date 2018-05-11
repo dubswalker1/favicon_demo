@@ -1,1 +1,1 @@
-web: gunicorn faviconfinder.wsgi --log-file -
+web: gunicorn demo.wsgi --log-file -
