@@ -9,6 +9,7 @@ h2 {
 }
 
 img {
+  padding-top: 20px;
   display: block;
   margin: 0 auto;
 }
@@ -20,5 +21,4 @@ form {
 
 #id_url {
 	width: 300px;
-	padding-bottom: 20px;
 }
