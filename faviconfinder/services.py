@@ -4,6 +4,7 @@ from .models import Favicon
 import re
 from bs4 import BeautifulSoup
 from django.db import transaction
+#import urllib3
 import pdb
 
 def validateFaviconUrl(fav_url):
@@ -24,6 +25,7 @@ def findFaviconUrl(url_param):
 	return(fav_url)
 
 def makeRequest(url):
+	pdb.set_trace()
 	# make the request and return the response
 	print("Trying:"+url)
 	try:
@@ -32,12 +34,15 @@ def makeRequest(url):
 		response = sess.get(url, timeout=0.3)
 		response.raise_for_status()
 	except requests.exceptions.RequestException as e:
-		print("Exception in makeRequest: "+str(e))
+		print("Exception:"+e)
+		return(None)
+	except urllib3.exceptions.LocationParseError as url_e:
+		print("Exception:"+url_e)
 		return(None)
 	return response
 	
 def requestIconLinkUrl(url_param):
-	#pdb.set_trace()
+	pdb.set_trace()
 	# look for favicon via the url referenced in the icon link
 	# of the destination page
 	# this takes 2 requests (one to find url, one to check if it works)
